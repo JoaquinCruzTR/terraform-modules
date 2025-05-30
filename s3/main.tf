@@ -11,5 +11,5 @@ resource "aws_s3_bucket" "env_file_bucket" {
 resource "aws_s3_object" "upload_env_file" {
   bucket = aws_s3_bucket.env_file_bucket.id
   key    = var.env_file_name
-  source = "./${}"#this should be the path to your local environment file
+  source = "./${var.env_file_name}"#this should be the path to your local environment file
 }
