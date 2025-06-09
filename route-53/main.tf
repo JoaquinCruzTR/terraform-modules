@@ -5,13 +5,13 @@ data "aws_route53_zone" "hosted_zone" {
 
 # create a record set in route 53
 resource "aws_route53_record" "site_domain" {
-  zone_id = 
-  name    = 
-  type    = 
+  zone_id = data.aws_route53_zone.hosted_zone.id
+  name    = var.record_name
+  type    = "ALIAS"
 
   alias {
-    name                   = 
-    zone_id                = 
-    evaluate_target_health = 
+    name                   = var.application_load_balancer_dns_name
+    zone_id                = var.application_load_balancer_zone_id
+    evaluate_target_health = true
   }
 }
